@@ -17,7 +17,8 @@
         android:layout_height="match_parent"
         android:id="@+id/imgProfile"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/eve" />
+        android:src="@drawable/eve"
+        android:onClick="viewProfile" />
 
     <Button
         android:layout_width="150dp"
@@ -25,7 +26,8 @@
         android:text="Dislike"
         android:id="@+id/btnDislike"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:backgroundTint="@android:color/holo_red_light" />
 
     <Button
         android:layout_width="150dp"
@@ -33,6 +35,17 @@
         android:text="Like"
         android:id="@+id/btnLike"
         android:layout_alignTop="@+id/btnDislike"
-        android:layout_alignEnd="@+id/imgProfile" />
+        android:layout_alignEnd="@+id/imgProfile"
+        android:backgroundTint="@android:color/holo_green_light" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="User"
+        android:id="@+id/lblProfileName"
+        android:layout_alignTop="@+id/imgProfile"
+        android:layout_centerHorizontal="true"
+        android:textSize="48sp" />
 
 </RelativeLayout>
