@@ -22,4 +22,9 @@ public class UserData {
     public void setUser(String user) {
         this.user = user;
     }
+
+    public void UserData(String name )
+    {
+        this.setUser(name);
+    }
 }

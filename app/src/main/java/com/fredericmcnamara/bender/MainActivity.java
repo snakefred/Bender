@@ -1,5 +1,5 @@
 package com.fredericmcnamara.bender;
-
+import java.util.ArrayList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,7 +17,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private UserDAO datasource;
-
+   public  List<UserData> myList=new ArrayList<UserData>();
+    public int currentPos = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,10 +31,42 @@ public class MainActivity extends AppCompatActivity {
 
         List<UserData> values = datasource.getAllUsers();
 
+//        UserData usertest1 = new UserData();
+//        usertest1.UserData("Patate");
+//        UserData usertest2 = new UserData();
+//        usertest2.UserData("Steak");
+//        UserData usertest3 = new UserData();
+//        usertest3.UserData("Ble d'inde");
+
+
+        UserData usertest1 = new UserData();
+        usertest1.UserData("Patate");
+        UserData usertest2 = new UserData();
+        usertest2.UserData("Steak");
+        UserData usertest3 = new UserData();
+        usertest3.UserData("Ble d'inde");
+
+
+        myList.add(usertest1);
+        myList.add(usertest2);
+        myList.add(usertest3);
+
         TextView profileName = (TextView) findViewById(R.id.lblProfileName);
-        profileName.setText("Eve");
+        profileName.setText(myList.get(0).getUser());
+
     }
 
+    public void likeButtonTap(View view) {
+        if(currentPos >= (myList.size() - 1)) {
+            currentPos = 0;
+        }
+        else {
+            currentPos++;
+        }
+        TextView profileName = (TextView) findViewById(R.id.lblProfileName);
+        profileName.setText(myList.get(currentPos).getUser());
+        //Show
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

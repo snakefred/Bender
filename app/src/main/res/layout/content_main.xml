@@ -36,7 +36,8 @@
         android:id="@+id/btnLike"
         android:layout_alignTop="@+id/btnDislike"
         android:layout_alignEnd="@+id/imgProfile"
-        android:backgroundTint="@android:color/holo_green_light" />
+        android:backgroundTint="@android:color/holo_green_light"
+        android:onClick="likeButtonTap" />
 
     <TextView
         android:layout_width="wrap_content"
