@@ -1,21 +1,21 @@
 package com.fredericmcnamara.bender;
 
+import java.io.Serializable;
+
 /**
  * Created by fredericmcnamara on 16-05-09.
  */
-public class User {
-    private long id;
+public class User implements Serializable {
     private String username;
     private int age;
     private String description;
-    private String likes;
+    private String[] likes;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public User(String username, int age, String description, String[] likes) {
+        this.username = username;
+        this.age = age;
+        this.description = description;
+        this.likes = likes;
     }
 
     public String getUsername() {
@@ -42,11 +42,9 @@ public class User {
         this.description = description;
     }
 
-    public String getLikes() {
-        return likes;
-    }
+    public String[] getLikes() { return likes; }
 
-    public void setLikes(String likes) {
+    public void setLikes(String[] likes) {
         this.likes = likes;
     }
 

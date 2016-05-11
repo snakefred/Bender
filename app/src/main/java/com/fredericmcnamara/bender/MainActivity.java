@@ -1,4 +1,8 @@
 package com.fredericmcnamara.bender;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,11 +18,15 @@ import android.widget.TextView;
 import java.util.List;
 import android.widget.TextView;
 
+import org.w3c.dom.Comment;
+
 public class MainActivity extends AppCompatActivity {
 
     private UserDAO datasource;
-   public  List<UserData> myList=new ArrayList<UserData>();
+    public  List<User> myList = new ArrayList<User>();
+    public  List<User> robotsList = new ArrayList<User>();
     public int currentPos = 0;
+    public String serializedObject;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,42 +37,64 @@ public class MainActivity extends AppCompatActivity {
         datasource = new UserDAO(this);
         datasource.open();
 
+        User robot1 = new User("Bender", 18, "Lol", new String[] {"Eve", "Test"});
+        User robot2 = new User("Wall-E", 18, "WAAAALLLLLL-EEE", new String[] {"Eve", "Test"});
+        User robot3 = new User("BB-8", 18, "1101011101010", new String[] {"Eve", "Test"});
+
+        myList.add(robot1);
+        myList.add(robot2);
+        myList.add(robot3);
+
+        serializedObject = "";
+        for (int i = 0; i < myList.size(); i++) {
+            try {
+                ByteArrayOutputStream bo = new ByteArrayOutputStream();
+                ObjectOutputStream so = new ObjectOutputStream(bo);
+                so.writeObject(myList.get(i));
+                so.flush();
+                serializedObject = bo.toString("ISO-8859-1");
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            UserData user = null;
+            user = datasource.createUser(serializedObject);
+        }
+
+        //robotsList = myList;
+
         List<UserData> values = datasource.getAllUsers();
 
-//        UserData usertest1 = new UserData();
-//        usertest1.UserData("Patate");
-//        UserData usertest2 = new UserData();
-//        usertest2.UserData("Steak");
-//        UserData usertest3 = new UserData();
-//        usertest3.UserData("Ble d'inde");
-
-
-        UserData usertest1 = new UserData();
-        usertest1.UserData("Patate");
-        UserData usertest2 = new UserData();
-        usertest2.UserData("Steak");
-        UserData usertest3 = new UserData();
-        usertest3.UserData("Ble d'inde");
-
-
-        myList.add(usertest1);
-        myList.add(usertest2);
-        myList.add(usertest3);
+        serializedObject = "";
+        System.out.println(values.get(0).getUser());
+        for (int i = 0; i < values.size(); i++) {
+            try {
+                serializedObject = values.get(i).getUser();
+                byte b[] = serializedObject.getBytes("ISO-8859-1");
+                ByteArrayInputStream bi = new ByteArrayInputStream(b);
+                ObjectInputStream si = new ObjectInputStream(bi);
+                User obj = (User) si.readObject();
+                System.out.println(obj);
+                robotsList.add(obj);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
 
         TextView profileName = (TextView) findViewById(R.id.lblProfileName);
-        profileName.setText(myList.get(0).getUser());
+        profileName.setText(robotsList.get(0).getUsername());
 
     }
 
     public void likeButtonTap(View view) {
-        if(currentPos >= (myList.size() - 1)) {
-            currentPos = 0;
+        if(currentPos >= (robotsList.size() - 1)) {
+            TextView profileName = (TextView) findViewById(R.id.lblProfileName);
+            profileName.setText("No other robots found around you...");
         }
         else {
             currentPos++;
+            TextView profileName = (TextView) findViewById(R.id.lblProfileName);
+            profileName.setText(robotsList.get(currentPos).getUsername());
         }
-        TextView profileName = (TextView) findViewById(R.id.lblProfileName);
-        profileName.setText(myList.get(currentPos).getUser());
         //Show
     }
     @Override
@@ -87,6 +117,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        datasource.open();
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        datasource.close();
+        super.onPause();
     }
 
     public void viewProfile(View view) {

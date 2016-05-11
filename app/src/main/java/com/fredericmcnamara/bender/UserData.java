@@ -1,9 +1,11 @@
 package com.fredericmcnamara.bender;
 
+import java.io.Serializable;
+
 /**
  * Created by fredericmcnamara on 16-05-09.
  */
-public class UserData {
+public class UserData implements Serializable {
     private long id;
     private String user;
 
