@@ -9,4 +9,38 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.fredericmcnamara.bender.ProfileActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imgProfile"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/eve" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="User"
+        android:id="@+id/lblName"
+        android:layout_alignTop="@+id/imgProfile"
+        android:layout_centerHorizontal="true"
+        android:textSize="48sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/lblDesc"
+        android:layout_alignBottom="@+id/imgProfile"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/lblAge"
+        android:layout_above="@+id/lblDesc"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

@@ -9,19 +9,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-<<<<<<< HEAD
 import android.widget.ImageView;
-=======
 import android.widget.Button;
->>>>>>> origin/master
 import android.widget.TextView;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -54,18 +49,12 @@ public class MainActivity extends AppCompatActivity {
         datasource = new UserDAO(this);
         datasource.open();
 
-<<<<<<< HEAD
-        User robot1 = new User("Bender", 18, "Lol", new String[] {"Eve", "Test"},"bender");
-        User robot2 = new User("Wall-E", 18, "WAAAALLLLLL-EEE", new String[] {"Eve", "Test"},"walle");
-        User robot3 = new User("BB-8", 18, "1101011101010", new String[] {"Eve", "Test"},"bb8");
-        User robot4 = new User("Bender", 18, "Lol", new String[] {"Eve", "Test"},"bender");
-        User robot5 = new User("Wall-E", 18, "WAAAALLLLLL-EEE", new String[] {"Eve", "Test"},"walle");
-        User robot6 = new User("BB-8", 18, "1101011101010", new String[] {"Eve", "Test"},"bb8");
-=======
-        User robot1 = new User("Bender", 18, "Lol", new ArrayList<String>() {{add("Eve"); add("Test");}});
-        User robot2 = new User("Wall-E", 18, "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve"); add("Test");}});
-        User robot3 = new User("BB-8", 18, "1101011101010", new ArrayList<String>() {{add("Eve"); add("Test");}});
->>>>>>> origin/master
+        User robot1 = new User("Bender", 18, "Lol", new ArrayList<String>() {{add("Eve"); add("Test");}},"bender");
+        User robot2 = new User("Wall-E", 18, "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve"); add("Test");}},"walle");
+        User robot3 = new User("BB-8", 18, "1101011101010", new ArrayList<String>() {{add("Eve"); add("Test");}},"bb8");
+        User robot4 = new User("Bender", 18, "Lol", new ArrayList<String>() {{add("Eve"); add("Test");}},"bender");
+        User robot5 = new User("Wall-E", 18, "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve"); add("Test");}},"walle");
+        User robot6 = new User("BB-8", 18, "1101011101010", new ArrayList<String>() {{add("Eve"); add("Test");}},"bb8");
 
         myList.add(robot1);
         myList.add(robot2);
@@ -116,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
         if(currentPos >= (robotsList.size() - 1)) {
             TextView profileName = (TextView) findViewById(R.id.lblProfileName);
             profileName.setText("No other robots found around you...");
+            ImageView imgProfil = (ImageView) findViewById(R.id.imgProfile);
+            imgProfil.setImageResource(0);
             Button btnLike = (Button) findViewById(R.id.btnLike);
             btnLike.setEnabled(false);
             TextView btnDislike = (TextView) findViewById(R.id.btnDislike);
@@ -124,18 +115,19 @@ public class MainActivity extends AppCompatActivity {
         else {
             TextView profileName = (TextView) findViewById(R.id.lblProfileName);
             profileName.setText(robotsList.get(currentPos).getUsername());
+            ImageView imgProfil = (ImageView) findViewById(R.id.imgProfile);
+            // imgProfil.setImageResource(R.drawable.);
+            Resources res = getResources();
+            String mDrawableName = myList.get(currentPos).getImageName();
+            int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+            imgProfil.setImageResource(resID);
+            Log.d("Debug", "Value: " + mDrawableName);
+            //imgProfil.setImageResource(R.drawable.bb8);
         }
 
     }
 
     public void likeButtonTap(View view) {
-<<<<<<< HEAD
-        if(currentPos >= (myList.size() - 1)) {
-            TextView profileName = (TextView) findViewById(R.id.lblProfileName);
-            profileName.setText("No other robots found around you...");
-            ImageView imgProfil = (ImageView) findViewById(R.id.imgProfile);
-            imgProfil.setImageResource(0);
-=======
         ArrayList<String> likes = testUser.getLikes();
         curUser = robotsList.get(currentPos);
         likes.add(curUser.getUsername());
@@ -168,6 +160,8 @@ public class MainActivity extends AppCompatActivity {
         if(currentPos >= (robotsList.size() - 1)) {
             TextView profileName = (TextView) findViewById(R.id.lblProfileName);
             profileName.setText("No other robots found around you...");
+            ImageView imgProfil = (ImageView) findViewById(R.id.imgProfile);
+            imgProfil.setImageResource(0);
             Button btnLike = (Button) findViewById(R.id.btnLike);
             btnLike.setEnabled(false);
             TextView btnDislike = (TextView) findViewById(R.id.btnDislike);
@@ -177,6 +171,14 @@ public class MainActivity extends AppCompatActivity {
             currentPos++;
             TextView profileName = (TextView) findViewById(R.id.lblProfileName);
             profileName.setText(robotsList.get(currentPos).getUsername());
+            ImageView imgProfil = (ImageView) findViewById(R.id.imgProfile);
+            // imgProfil.setImageResource(R.drawable.);
+            Resources res = getResources();
+            String mDrawableName = myList.get(currentPos).getImageName();
+            int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+            imgProfil.setImageResource(resID);
+            Log.d("Debug", "Value: " + mDrawableName);
+            //imgProfil.setImageResource(R.drawable.bb8);
         }
         //Show
     }
@@ -185,11 +187,12 @@ public class MainActivity extends AppCompatActivity {
         if(currentPos >= (robotsList.size() - 1)) {
             TextView profileName = (TextView) findViewById(R.id.lblProfileName);
             profileName.setText("No other robots found around you...");
+            ImageView imgProfil = (ImageView) findViewById(R.id.imgProfile);
+            imgProfil.setImageResource(0);
             Button btnLike = (Button) findViewById(R.id.btnLike);
             btnLike.setEnabled(false);
             TextView btnDislike = (TextView) findViewById(R.id.btnDislike);
             btnDislike.setEnabled(false);
->>>>>>> origin/master
         }
         else {
             currentPos++;
@@ -245,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void viewProfile(View view) {
         Intent intent = new Intent(this, ProfileActivity.class);
+        intent.putExtra("curUser", curUser);
         startActivity(intent);
     }
 }

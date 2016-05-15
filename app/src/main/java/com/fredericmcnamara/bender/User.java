@@ -13,14 +13,17 @@ public class User implements Serializable {
     private String username;
     private int age;
     private String description;
-<<<<<<< HEAD
-    private String[] likes;
     private String imageName;
-=======
     private ArrayList<String> likes;
->>>>>>> origin/master
 
     public User() {
+    }
+
+    public User(String username, int age, String description, String imageName) {
+        this.username = username;
+        this.age = age;
+        this.description = description;
+        this.imageName = imageName;
     }
 
     public User(String username, int age, String description, ArrayList<String> likes) {
@@ -30,7 +33,7 @@ public class User implements Serializable {
         this.likes = likes;
     }
 
-    public User(String username, int age, String description, String[] likes, String imageName)
+    public User(String username, int age, String description, ArrayList<String> likes, String imageName)
     {
         this.setUsername(username);
         this.setAge(age);
