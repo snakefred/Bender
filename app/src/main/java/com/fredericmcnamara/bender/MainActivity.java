@@ -51,10 +51,16 @@ public class MainActivity extends AppCompatActivity {
 
         User robot1 = new User("Bender", "18", "Lol", new ArrayList<String>() {{add("Eve"); add("Test");}},"bender");
         User robot2 = new User("Wall-E", "18", "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve"); add("Test");}},"walle");
-        User robot3 = new User("BB-8", "18", "1101011101010", new ArrayList<String>() {{add("Eve"); add("Test");}},"bb8");
-        User robot4 = new User("Bender2", "18", "Lol", new ArrayList<String>() {{add("Eve"); add("Test");}},"bender");
-        User robot5 = new User("Wall-E2", "18", "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve"); add("Test");}},"walle");
-        User robot6 = new User("BB-82", "18", "1101011101010", new ArrayList<String>() {{add("Eve"); add("Test");}},"bb8");
+        User robot3 = new User("BB-8", "18", "1101011101010", new ArrayList<String>() {{add("Eve"); add("Bender");}},"bb8");
+        User robot4 = new User("Bender2", "18", "Lol", new ArrayList<String>() {{add("Eve");}},"bender");
+        User robot5 = new User("Wall-E2", "18", "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve");}},"walle");
+        User robot6 = new User("BB-82", "18", "1101011101010", new ArrayList<String>() {{add("Eve"); add("BB-88");}},"bb8");
+        User robot7 = new User("Eve", "18", "Eve!", new ArrayList<String>() {{add("Wall-E"); add("Test");}},"eve");
+        User robot8 = new User("Wall-E3", "18", "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve");}},"walle");
+        User robot9 = new User("BB-83", "18", "1101011101010", new ArrayList<String>() {{add("Eve"); add("Test");}},"bb8");
+        User robot10 = new User("Bender3", "18", "Lol", new ArrayList<String>() {{add("Bender2"); add("Wall-E3");}},"bender");
+        User robot11 = new User("Wall-E4", "18", "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve"); add("Wall-E4");}},"walle");
+        User robot12 = new User("BB-88", "18", "1101011101010", new ArrayList<String>() {{add("BB-8");}},"bb8");
 
         myList.add(robot1);
         myList.add(robot2);
@@ -62,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
         myList.add(robot4);
         myList.add(robot5);
         myList.add(robot6);
+        myList.add(robot7);
+        myList.add(robot8);
+        myList.add(robot9);
+        myList.add(robot10);
+        myList.add(robot11);
+        myList.add(robot12);
 
         serializedObject = "";
         for (int i = 0; i < myList.size(); i++) {
@@ -144,7 +156,17 @@ public class MainActivity extends AppCompatActivity {
                         .setCancelable(false)
                         .setPositiveButton("See profile",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
-                                viewProfile(findViewById(android.R.id.content));
+                                //viewProfile(findViewById(android.R.id.content));
+                                Intent intent = new Intent(context, ProfileActivity.class);
+                                intent.putExtra("name", myList.get(currentPos - 1).getUsername());
+                                intent.putExtra("desc", myList.get(currentPos - 1).getDescription());
+                                intent.putExtra("age", myList.get(currentPos - 1).getAge());
+                                intent.putExtra("imageName",myList.get(currentPos - 1).getImageName());
+                                startActivity(intent);
+                                Log.d("Debug", "Username: " + myList.get(currentPos - 1).getUsername());
+                                Log.d("Debug", "Age: " + myList.get(currentPos - 1).getAge());
+                                Log.d("Debug", "Desc: " + myList.get(currentPos - 1).getDescription());
+                                Log.d("Debug", "imageName: " + myList.get(currentPos - 1).getImageName());
                             }
                         })
                         .setNegativeButton("Continue searching",new DialogInterface.OnClickListener() {
