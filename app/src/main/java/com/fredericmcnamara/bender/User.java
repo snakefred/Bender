@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class User implements Serializable {
     private String username;
-    private int age;
+    private String age;
     private String description;
     private String imageName;
     private ArrayList<String> likes;
@@ -19,21 +19,21 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String username, int age, String description, String imageName) {
+    public User(String username, String age, String description, String imageName) {
         this.username = username;
         this.age = age;
         this.description = description;
         this.imageName = imageName;
     }
 
-    public User(String username, int age, String description, ArrayList<String> likes) {
+    public User(String username, String age, String description, ArrayList<String> likes) {
         this.username = username;
         this.age = age;
         this.description = description;
         this.likes = likes;
     }
 
-    public User(String username, int age, String description, ArrayList<String> likes, String imageName)
+    public User(String username, String age, String description, ArrayList<String> likes, String imageName)
     {
         this.setUsername(username);
         this.setAge(age);
@@ -50,11 +50,11 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 

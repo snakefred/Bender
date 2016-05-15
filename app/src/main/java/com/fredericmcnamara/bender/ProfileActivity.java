@@ -16,18 +16,22 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         Intent intent = getIntent();
         User curUser = (User) intent.getSerializableExtra("curUser");
+        String name = (String) intent.getSerializableExtra("name");
+        String age = (String) intent.getSerializableExtra("age");
+        String desc = (String) intent.getSerializableExtra("desc");
+        String imageName = (String) intent.getSerializableExtra("imageName");
 
         TextView profileName = (TextView) findViewById(R.id.lblName);
-        profileName.setText(curUser.getUsername());
+        profileName.setText(name);
         TextView profileAge = (TextView) findViewById(R.id.lblAge);
-        profileAge.setText(curUser.getAge());
+        profileAge.setText(age);
         TextView profileDesc = (TextView) findViewById(R.id.lblDesc);
-        profileDesc.setText(curUser.getUsername());
+        profileDesc.setText(desc);
         ImageView imgProfil = (ImageView) findViewById(R.id.imgProfile);
         Resources res = getResources();
-        String mDrawableName = curUser.getImageName();
-        int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+        //String mDrawableName = imageName;
+        int resID = res.getIdentifier(imageName , "drawable", getPackageName());
         imgProfil.setImageResource(resID);
-        Log.d("Debug", "Value: " + mDrawableName);
+        //Log.d("Debug", "Value: " + test);
     }
 }

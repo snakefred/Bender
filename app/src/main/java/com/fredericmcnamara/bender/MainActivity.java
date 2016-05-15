@@ -32,7 +32,7 @@ import org.w3c.dom.Comment;
 public class MainActivity extends AppCompatActivity {
 
     private UserDAO datasource;
-    public User testUser = new User("Test", 21, "Lol", new ArrayList<String>()); //User profile
+    public User testUser = new User("Test", "21", "Lol", new ArrayList<String>()); //User profile
     public User curUser = new User();
     public  List<User> myList = new ArrayList<User>();
     public  List<User> robotsList = new ArrayList<User>();
@@ -49,12 +49,12 @@ public class MainActivity extends AppCompatActivity {
         datasource = new UserDAO(this);
         datasource.open();
 
-        User robot1 = new User("Bender", 18, "Lol", new ArrayList<String>() {{add("Eve"); add("Test");}},"bender");
-        User robot2 = new User("Wall-E", 18, "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve"); add("Test");}},"walle");
-        User robot3 = new User("BB-8", 18, "1101011101010", new ArrayList<String>() {{add("Eve"); add("Test");}},"bb8");
-        User robot4 = new User("Bender", 18, "Lol", new ArrayList<String>() {{add("Eve"); add("Test");}},"bender");
-        User robot5 = new User("Wall-E", 18, "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve"); add("Test");}},"walle");
-        User robot6 = new User("BB-8", 18, "1101011101010", new ArrayList<String>() {{add("Eve"); add("Test");}},"bb8");
+        User robot1 = new User("Bender", "18", "Lol", new ArrayList<String>() {{add("Eve"); add("Test");}},"bender");
+        User robot2 = new User("Wall-E", "18", "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve"); add("Test");}},"walle");
+        User robot3 = new User("BB-8", "18", "1101011101010", new ArrayList<String>() {{add("Eve"); add("Test");}},"bb8");
+        User robot4 = new User("Bender2", "18", "Lol", new ArrayList<String>() {{add("Eve"); add("Test");}},"bender");
+        User robot5 = new User("Wall-E2", "18", "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve"); add("Test");}},"walle");
+        User robot6 = new User("BB-82", "18", "1101011101010", new ArrayList<String>() {{add("Eve"); add("Test");}},"bb8");
 
         myList.add(robot1);
         myList.add(robot2);
@@ -248,7 +248,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void viewProfile(View view) {
         Intent intent = new Intent(this, ProfileActivity.class);
-        intent.putExtra("curUser", curUser);
+        ///intent.putExtra("curUser", curUser);
+
+        intent.putExtra("name", myList.get(currentPos).getUsername());
+        intent.putExtra("desc", myList.get(currentPos).getDescription());
+        intent.putExtra("age", myList.get(currentPos).getAge());
+        intent.putExtra("imageName",myList.get(currentPos).getImageName());
         startActivity(intent);
+        Log.d("Debug", "Username: " + myList.get(currentPos).getUsername());
+        Log.d("Debug", "Age: " + myList.get(currentPos).getAge());
+        Log.d("Debug", "Desc: " + myList.get(currentPos).getDescription());
+        Log.d("Debug", "imageName: " + myList.get(currentPos).getImageName());
+
+
     }
 }
