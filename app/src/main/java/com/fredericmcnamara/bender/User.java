@@ -1,6 +1,8 @@
 package com.fredericmcnamara.bender;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by fredericmcnamara on 16-05-09.
@@ -9,9 +11,12 @@ public class User implements Serializable {
     private String username;
     private int age;
     private String description;
-    private String[] likes;
+    private ArrayList<String> likes;
 
-    public User(String username, int age, String description, String[] likes) {
+    public User() {
+    }
+
+    public User(String username, int age, String description, ArrayList<String> likes) {
         this.username = username;
         this.age = age;
         this.description = description;
@@ -42,9 +47,9 @@ public class User implements Serializable {
         this.description = description;
     }
 
-    public String[] getLikes() { return likes; }
+    public ArrayList<String> getLikes() { return likes; }
 
-    public void setLikes(String[] likes) {
+    public void setLikes(ArrayList<String> likes) {
         this.likes = likes;
     }
 
