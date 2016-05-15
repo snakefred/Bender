@@ -13,7 +13,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.BitmapDrawable;
+import java.io.InputStream;
+import android.util.Log;
 
 import java.util.List;
 import android.widget.TextView;
@@ -37,13 +43,19 @@ public class MainActivity extends AppCompatActivity {
         datasource = new UserDAO(this);
         datasource.open();
 
-        User robot1 = new User("Bender", 18, "Lol", new String[] {"Eve", "Test"});
-        User robot2 = new User("Wall-E", 18, "WAAAALLLLLL-EEE", new String[] {"Eve", "Test"});
-        User robot3 = new User("BB-8", 18, "1101011101010", new String[] {"Eve", "Test"});
+        User robot1 = new User("Bender", 18, "Lol", new String[] {"Eve", "Test"},"bender");
+        User robot2 = new User("Wall-E", 18, "WAAAALLLLLL-EEE", new String[] {"Eve", "Test"},"walle");
+        User robot3 = new User("BB-8", 18, "1101011101010", new String[] {"Eve", "Test"},"bb8");
+        User robot4 = new User("Bender", 18, "Lol", new String[] {"Eve", "Test"},"bender");
+        User robot5 = new User("Wall-E", 18, "WAAAALLLLLL-EEE", new String[] {"Eve", "Test"},"walle");
+        User robot6 = new User("BB-8", 18, "1101011101010", new String[] {"Eve", "Test"},"bb8");
 
         myList.add(robot1);
         myList.add(robot2);
         myList.add(robot3);
+        myList.add(robot4);
+        myList.add(robot5);
+        myList.add(robot6);
 
         serializedObject = "";
         for (int i = 0; i < myList.size(); i++) {
@@ -51,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 ByteArrayOutputStream bo = new ByteArrayOutputStream();
                 ObjectOutputStream so = new ObjectOutputStream(bo);
                 so.writeObject(myList.get(i));
+
+
                 so.flush();
                 serializedObject = bo.toString("ISO-8859-1");
             } catch (Exception e) {
@@ -86,14 +100,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void likeButtonTap(View view) {
-        if(currentPos >= (robotsList.size() - 1)) {
+        if(currentPos >= (myList.size() - 1)) {
             TextView profileName = (TextView) findViewById(R.id.lblProfileName);
             profileName.setText("No other robots found around you...");
+            ImageView imgProfil = (ImageView) findViewById(R.id.imgProfile);
+            imgProfil.setImageResource(0);
         }
         else {
             currentPos++;
             TextView profileName = (TextView) findViewById(R.id.lblProfileName);
-            profileName.setText(robotsList.get(currentPos).getUsername());
+            profileName.setText(myList.get(currentPos).getUsername());
+            ImageView imgProfil = (ImageView) findViewById(R.id.imgProfile);
+           // imgProfil.setImageResource(R.drawable.);
+            Resources res = getResources();
+            String mDrawableName = myList.get(currentPos).getImageName();
+            int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+            imgProfil.setImageResource(resID);
+            Log.d("Debug", "Value: " + mDrawableName);
+            //imgProfil.setImageResource(R.drawable.bb8);
+
+
+
         }
         //Show
     }

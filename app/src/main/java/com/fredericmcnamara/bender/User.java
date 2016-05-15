@@ -1,5 +1,7 @@
 package com.fredericmcnamara.bender;
 
+import android.media.Image;
+
 import java.io.Serializable;
 
 /**
@@ -10,12 +12,22 @@ public class User implements Serializable {
     private int age;
     private String description;
     private String[] likes;
+    private String imageName;
 
     public User(String username, int age, String description, String[] likes) {
         this.username = username;
         this.age = age;
         this.description = description;
         this.likes = likes;
+    }
+
+    public User(String username, int age, String description, String[] likes, String imageName)
+    {
+        this.setUsername(username);
+        this.setAge(age);
+        this.setDescription(description);
+        this.setLikes(likes);
+        this.setImageName(imageName);
     }
 
     public String getUsername() {
@@ -48,6 +60,13 @@ public class User implements Serializable {
         this.likes = likes;
     }
 
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
 
     @Override
     public String toString() {
