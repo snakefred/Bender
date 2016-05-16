@@ -49,18 +49,18 @@ public class MainActivity extends AppCompatActivity {
         datasource = new UserDAO(this);
         datasource.open();
 
-        User robot1 = new User("Bender", "18", "Lol", new ArrayList<String>() {{add("Eve"); add("Test");}},"bender");
-        User robot2 = new User("Wall-E", "18", "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve"); add("Test");}},"walle");
-        User robot3 = new User("BB-8", "18", "1101011101010", new ArrayList<String>() {{add("Eve"); add("Bender");}},"bb8");
+        User robot1 = new User("Bender", "25", "Je plis du metal", new ArrayList<String>() {{add("Eve"); add("Test");}},"bender");
+        User robot2 = new User("Wall-E", "22", "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve"); add("Test");}},"walle");
+        User robot3 = new User("BB-8", "16", "1101011101010", new ArrayList<String>() {{add("Eve"); add("Bender");}},"bb8");
         User robot4 = new User("Bender2", "18", "Lol", new ArrayList<String>() {{add("Eve");}},"bender");
-        User robot5 = new User("Wall-E2", "18", "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve");}},"walle");
-        User robot6 = new User("BB-82", "18", "1101011101010", new ArrayList<String>() {{add("Eve"); add("BB-88");}},"bb8");
-        User robot7 = new User("Eve", "18", "Eve!", new ArrayList<String>() {{add("Wall-E"); add("Test");}},"eve");
-        User robot8 = new User("Wall-E3", "18", "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve");}},"walle");
-        User robot9 = new User("BB-83", "18", "1101011101010", new ArrayList<String>() {{add("Eve"); add("Test");}},"bb8");
-        User robot10 = new User("Bender3", "18", "Lol", new ArrayList<String>() {{add("Bender2"); add("Wall-E3");}},"bender");
-        User robot11 = new User("Wall-E4", "18", "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve"); add("Wall-E4");}},"walle");
-        User robot12 = new User("BB-88", "18", "1101011101010", new ArrayList<String>() {{add("BB-8");}},"bb8");
+        User robot5 = new User("Wall-E2", "24", "EEEEEEEVVVVVEEEEEEE", new ArrayList<String>() {{add("Eve");}},"walle");
+        User robot6 = new User("BB-82", "33", "1101011101010", new ArrayList<String>() {{add("Eve"); add("BB-88");}},"bb8");
+        User robot7 = new User("Eve", "34", "Eve!", new ArrayList<String>() {{add("Wall-E"); add("Test");}},"eve");
+        User robot8 = new User("Wall-E3", "56", "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve");}},"walle");
+        User robot9 = new User("BB-83", "13", "1101011101010", new ArrayList<String>() {{add("Eve"); add("Test");}},"bb8");
+        User robot10 = new User("Bender3", "40", "Lol", new ArrayList<String>() {{add("Bender2"); add("Wall-E3");}},"bender");
+        User robot11 = new User("Wall-E4", "13", "WAAAALLLLLL-EEE", new ArrayList<String>() {{add("Eve"); add("Wall-E4");}},"walle");
+        User robot12 = new User("BB-88", "22", "1101011101010", new ArrayList<String>() {{add("BB-8");}},"bb8");
 
         myList.add(robot1);
         myList.add(robot2);
